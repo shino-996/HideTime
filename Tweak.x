@@ -12,6 +12,10 @@
 @interface NCNotificationListSectionRevealHintView : UIView
 @end
 
+@interface SBFloatingDockPlatterView : UIView
+- (UIView *)backgroundView;
+@end
+
 %hook SBFLockScreenDateView
 - (void)layoutSubviews
 {
@@ -26,6 +30,7 @@
 	self.hidden = YES;
 	return %orig;
 }
+
 %end
 
 %hook CSTeachableMomentsContainerView
@@ -40,6 +45,14 @@
 - (void)layoutSubviews
 {
 	self.hidden = YES;
+	return %orig;
+}
+%end
+
+%hook SBFloatingDockPlatterView
+-(UIView *)backgroundView {
+	%orig;
+	[%orig setHidden:YES];
 	return %orig;
 }
 %end
